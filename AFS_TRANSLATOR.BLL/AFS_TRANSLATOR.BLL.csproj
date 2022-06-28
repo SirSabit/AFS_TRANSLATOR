@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AFS_TRANSLATOR.CORE\AFS_TRANSLATOR.CORE.csproj" />
+    <ProjectReference Include="..\AFS_TRANSLATOR.DAL\AFS_TRANSLATOR.DAL.csproj" />
+    <ProjectReference Include="..\AFS_TRANSLATOR.DTO\AFS_TRANSLATOR.DTO.csproj" />
+    <ProjectReference Include="..\AFS_TRANSLATOR.ENTITIES\AFS_TRANSLATOR.ENTITIES.csproj" />
+  </ItemGroup>
+
+</Project>
