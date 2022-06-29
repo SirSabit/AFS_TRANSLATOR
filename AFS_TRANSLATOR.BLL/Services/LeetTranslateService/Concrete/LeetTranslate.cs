@@ -1,6 +1,8 @@
 ﻿using AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Abstract;
 using AFS_TRANSLATOR.DAL.ExternalApiCalls.FunTranslations.Translate.Abstract;
 using AFS_TRANSLATOR.DTO.Request;
+using AFS_TRANSLATOR.DTO.Response;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +21,36 @@ namespace AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Concrete
             _call = call;
         }
 
-        public void TranslateToLeet(LeetTranslateRequestDTO request)
+        public BaseResponseWithDataDTO<TranslateToLeetResponseDTO> TranslateToLeet(LeetTranslateRequestDTO request)
         {
             try
             {
                 dynamic req = new { text = request.Text };
-                var a = _call.Translate(_endpoint, req);
+
+                var apiResult = _call.Translate(_endpoint, req);
+
+                if (apiResult.Result.error != null)
+                {
+                    return new BaseResponseWithDataDTO<TranslateToLeetResponseDTO>()
+                    {
+                        StatusCode = apiResult.Result.error.code,                        
+                        Message = apiResult.Result.error.message
+                    };
+                }
+
+                TranslateToLeetResponseDTO data = new TranslateToLeetResponseDTO { Text = apiResult.Result.contents.text,Translated= apiResult.Result.contents.translated, Translation =apiResult.Result.contents.translation };
+
+                return new BaseResponseWithDataDTO<TranslateToLeetResponseDTO>()
+                {
+                    StatusCode=200,
+                    Data=data,
+                    Message="Success"
+                };
+
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception($"Error while api call for leet translate\n Reason: {ex.Message}");
             }
         }
     }

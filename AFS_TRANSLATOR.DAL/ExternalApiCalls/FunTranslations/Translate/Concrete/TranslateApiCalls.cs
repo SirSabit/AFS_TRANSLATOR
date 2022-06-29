@@ -15,20 +15,21 @@ namespace AFS_TRANSLATOR.DAL.ExternalApiCalls.FunTranslations.Translate.Concrete
     {
         private const string _baseUrl = "https://api.funtranslations.com/translate";
 
-        public async Task<string> Translate(string endpoint, dynamic body)
+        public async Task<dynamic> Translate(string endpoint, dynamic body)
         {
             string urlEdited = $"{_baseUrl}/{endpoint}";
             using (var client = new HttpClient())
             {
-                var serializeBody=JsonConvert.SerializeObject(body);
+                var serializeBody = JsonConvert.SerializeObject(body);
 
-                var payLoad = new StringContent(serializeBody,Encoding.UTF8,"application/json");
+                var payLoad = new StringContent(serializeBody, Encoding.UTF8, "application/json");
 
                 var result = client.PostAsync(urlEdited, payLoad).Result.Content.ReadAsStringAsync().Result;
 
-                return result;
+                var resultObject = JsonConvert.DeserializeObject<dynamic>(result);
+              
+                return resultObject;
             }
-
         }
 
     }

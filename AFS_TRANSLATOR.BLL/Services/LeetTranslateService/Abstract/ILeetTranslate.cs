@@ -1,4 +1,5 @@
 ﻿using AFS_TRANSLATOR.DTO.Request;
+using AFS_TRANSLATOR.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Abstract
 {
     public interface ILeetTranslate
     {
-        void TranslateToLeet(LeetTranslateRequestDTO request);
+        BaseResponseWithDataDTO<TranslateToLeetResponseDTO> TranslateToLeet(LeetTranslateRequestDTO request);
     }
 }
