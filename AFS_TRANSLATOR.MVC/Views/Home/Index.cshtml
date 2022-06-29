@@ -1,8 +1,47 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetcore.Mvc.TagHelpers
+@model LeetTranslateResponseViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Welcome To A.F.S. Tranlator</h1>
+        <p>Try some leet speak translation.</p>
+    </div>
+
+    <div class="row">
+        <form asp-action="Index" method="post" asp-controller="Home">
+            <div class="col-sm">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text" aria-describedby="inputGroup-sizing-default" name="text">
+                </div>
+            </div>
+            <br />
+            <div class="col-sm">
+                <button class="btn btn-primary btn-lg btn-block">Execute</button>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="col-sm">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Result</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Result" aria-describedby="inputGroup-sizing-default" asp-for="@Model.Translation">
+                </div>
+            </div>
+            @if (@Model.Message != "")
+            {
+                <p style="color: red">@Model.Message</p>
+            }
+
+        </form>
+    </div>
 </div>
+

@@ -1,5 +1,6 @@
 ﻿using AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Abstract;
 using AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Abstract;
+using AFS_TRANSLATOR.DTO.Request;
 using AFS_TRANSLATOR.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -18,16 +19,36 @@ namespace AFS_TRANSLATOR.MVC.Controllers
             _translationHistoryServices = translationHistoryServices;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-
-            return View();
+            LeetTranslateResponseViewModel response = new LeetTranslateResponseViewModel();
+            return View(response);
         }
+        [HttpPost]
+        public IActionResult Index(LeetTranslateRequestViewModel model)
+        {
+            LeetTranslateResponseViewModel response = new LeetTranslateResponseViewModel();
+            if (ModelState.IsValid)
+            {
+                var translation = _leetTranslate.TranslateToLeet(new LeetTranslateRequestDTO { Text = model.Text });
 
+                if (translation.StatusCode == 200)
+                {
+                    _translationHistoryServices.InsertTranslationData(new InsertTranslationDataRequestDTO { Text = translation.Data.Text, Translation = translation.Data.Translated, TranslationType = translation.Data.Translation });
+                    response.Translation = translation.Data.Translated;
+                    return View(response);
+                }
+                else
+                {
+                    response.Message = translation.Message;
+                    return View(response);
+                }
+            }
+            return View(response);
+        }
         public IActionResult Privacy()
         {
-            //var result = _leetTranslate.TranslateToLeet(new DTO.Request.LeetTranslateRequestDTO() { Text = "Hello World" });
-            _translationHistoryServices.InsertTranslationData(new DTO.Request.InsertTranslationDataRequestDTO() { Text = "result.Data.Text" , Translation="result.Data.Translation", TranslationType= "result.Data.Translated"});
             return View();
         }
 
