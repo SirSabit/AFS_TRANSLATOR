@@ -15,6 +15,6 @@ namespace AFS_TRANSLATOR.DAL.DBConnections
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=AfsTranslatorDb;User Id=postgres;Password=postgres;");
         }
-        public DbSet<RequestResponseLog> RequestResponseLogs { get; set; }        
+        public DbSet<TranslationHistory> Translations { get; set; }        
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.DAL.Repositories.Abstract
 {
-    public interface IRequestResponseLogRepository : IBaseRepository<TranslationHistory>
-    {       
+    public  interface IUserRepository: IBaseRepository<User>
+    {
     }
 }
