@@ -17,7 +17,7 @@ namespace AFS_TRANSLATOR.DAL.Extensions
         public static void IncludeDalServices(this IServiceCollection services)
         {
             services.AddDbContext<PgDbContext>();
-            services.AddScoped<IRequestResponseLogRepository, RequestResponseLogRepository>();
+            services.AddScoped<ITranslationHistoryRepository, TranslationHistoryRepository>();
             services.AddScoped<ITranslateApiCalls, TranslateApiCalls>();
         }
     }

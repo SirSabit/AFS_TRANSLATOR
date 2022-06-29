@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.DAL.Repositories.Concrete
 {
-    public class RequestResponseLogRepository : BaseRepository<TranslationHistory>, IRequestResponseLogRepository
+    public class TranslationHistoryRepository : BaseRepository<TranslationHistory>, ITranslationHistoryRepository
     {
-        public RequestResponseLogRepository(PgDbContext dbContext) : base(dbContext)
+        public TranslationHistoryRepository(PgDbContext dbContext) : base(dbContext)
         {
         }     
     }
