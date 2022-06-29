@@ -1,10 +1,30 @@
 using AFS_TRANSLATOR.BLL.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.IncludeBllServices();
+
+//Cookie Auth
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(x =>
+               {
+                   x.LoginPath = "/Login/index";
+                   x.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                   x.Cookie.Name = "AfsCookie";
+               });
+
+// Controller Level Authorization
+builder.Services.AddMvc(conf =>
+{
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+    conf.Filters.Add(new AuthorizeFilter(policy));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +40,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

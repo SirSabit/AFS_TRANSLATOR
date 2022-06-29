@@ -23,7 +23,7 @@ namespace AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete
         {
             try
             {
-                TranslationHistory entity = new TranslationHistory { Text = request.Text, Translation = request.Translation, TranslationType = request.TranslationType, CreatedAt = DateTime.UtcNow };
+                TranslationHistory entity = new TranslationHistory { Text = request.Text, Translation = request.Translation, TranslationType = request.TranslationType, CreatedAt = DateTime.Now };
 
                 _repository.Insert(entity);
 
@@ -44,9 +44,10 @@ namespace AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete
                 var translationHistoryList = _repository.GetAll();
 
                 translationHistoryList = filter.MinDate == DateTime.MinValue ? translationHistoryList : translationHistoryList.Where(x => x.CreatedAt >= filter.MinDate).ToList();
-                translationHistoryList = filter.MaxDate == DateTime.MaxValue ? translationHistoryList : translationHistoryList.Where(x => x.CreatedAt >= filter.MinDate).ToList();
-                translationHistoryList = filter.Text == "" ? translationHistoryList : translationHistoryList.Where(x => x.Text.ToLower().Contains(filter.Text.ToLower())).ToList();
-                translationHistoryList = filter.TranslationType == "" ? translationHistoryList : translationHistoryList.Where(x => x.TranslationType.ToLower().Contains(filter.TranslationType.ToLower())).ToList();
+                translationHistoryList = filter.MaxDate == DateTime.MaxValue ? translationHistoryList : translationHistoryList.Where(x => x.CreatedAt <= filter.MinDate).ToList();
+                translationHistoryList = filter.Text == "" || filter.Text == null ? translationHistoryList : translationHistoryList.Where(x => x.Text.ToLower().Contains(filter.Text.ToLower())).ToList();
+                translationHistoryList = filter.Translation == "" || filter.Translation == null ? translationHistoryList : translationHistoryList.Where(x => x.Translation.ToLower().Contains(filter.Translation.ToLower())).ToList();
+                translationHistoryList = filter.TranslationType == "" || filter.TranslationType ==null ? translationHistoryList : translationHistoryList.Where(x => x.TranslationType.ToLower().Contains(filter.TranslationType.ToLower())).ToList();
 
 
                 foreach (var translation in translationHistoryList)

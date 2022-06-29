@@ -1,0 +1,108 @@
+﻿@addTagHelper *, Microsoft.AspNetcore.Mvc.TagHelpers
+@model List<TranslationHistoryViewModel>
+<style>
+    #resultList {
+        position: absolute;
+        top: 60vh;
+        background: #fff;
+        padding: 30px;
+        box-shadow: 0px 0px 10px 0px #000;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .scroolClass {
+        height: 300px;
+        width: 1100px;
+        overflow-y: scroll;
+    }
+</style>
+<form asp-action="Index" method="post" asp-controller="TranslationHistory">
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Text" aria-describedby="inputGroup-sizing-default" name="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Translation</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Text" aria-describedby="inputGroup-sizing-default" name="translation">
+            </div>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Min Date</span>
+                </div>
+                <input type="date" class="form-control" aria-label="Text" aria-describedby="inputGroup-sizing-default" name="minDate">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Max Date</span>
+                </div>
+                <input type="date" class="form-control" aria-label="Text" aria-describedby="inputGroup-sizing-default" name="maxDate">
+            </div>
+        </div>
+    </div>
+     <div class="col-sm">
+                <button class="btn btn-primary btn-lg btn-block">Search</button>
+            </div>
+</form>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 scroolClass" id="resultList">
+        <table>
+            <tr>
+                <th>Text</th>
+                <th>Translation</th>
+                <th>TranslationType</th>
+                <th>Request Date</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Text</td>
+                    <td>@item.Translation</td>
+                    <td>
+                        @item.TranslationType
+                    </td>
+                    <td>
+                        @item.CreatedAt
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
