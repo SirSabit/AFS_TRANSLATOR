@@ -25,7 +25,7 @@ namespace AFS_TRANSLATOR.MVC.Controllers
                 {
                     new Claim(ClaimTypes.Name,model.NickName)
                 };
-                    var userIdentity = new ClaimsIdentity(claims, "GlomilCookie");
+                    var userIdentity = new ClaimsIdentity(claims, "AfsCookie");
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
                     await HttpContext.SignInAsync(principal);
