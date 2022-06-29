@@ -1,4 +1,5 @@
 ﻿using AFS_TRANSLATOR.ENTITIES;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.DAL.DBConnections
 {
-    public class PgDbContext : DbContext
+    public class PgDbContext : IdentityDbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=AfsTranslatorDb;User Id=postgres;Password=postgres;");
+            optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=TranslatorDb;User Id=postgres;Password=postgres;");
         }
         public DbSet<RequestResponseLog> RequestResponseLogs { get; set; }        
     }
