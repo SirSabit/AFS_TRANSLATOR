@@ -1,10 +1,5 @@
 ﻿using AFS_TRANSLATOR.CORE.CoreRepository.Abstract;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.CORE.CoreRepository.Concrete
 {

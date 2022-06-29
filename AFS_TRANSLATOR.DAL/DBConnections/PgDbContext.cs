@@ -1,10 +1,5 @@
 ﻿using AFS_TRANSLATOR.ENTITIES;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.DAL.DBConnections
 {
@@ -15,6 +10,6 @@ namespace AFS_TRANSLATOR.DAL.DBConnections
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=AfsTranslatorDb;User Id=postgres;Password=postgres;");
         }
-        public DbSet<TranslationHistory> Translations { get; set; }                      
+        public DbSet<TranslationHistory> Translations { get; set; }
     }
 }

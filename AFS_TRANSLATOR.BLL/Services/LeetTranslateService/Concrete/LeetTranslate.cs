@@ -2,12 +2,6 @@
 using AFS_TRANSLATOR.DAL.ExternalApiCalls.FunTranslations.Translate.Abstract;
 using AFS_TRANSLATOR.DTO.Request;
 using AFS_TRANSLATOR.DTO.Response;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Concrete
 {
@@ -33,18 +27,18 @@ namespace AFS_TRANSLATOR.BLL.Services.LeetTranslateService.Concrete
                 {
                     return new BaseResponseWithDataDTO<TranslateToLeetResponseDTO>()
                     {
-                        StatusCode = apiResult.Result.error.code,                        
+                        StatusCode = apiResult.Result.error.code,
                         Message = apiResult.Result.error.message
                     };
                 }
 
-                TranslateToLeetResponseDTO data = new TranslateToLeetResponseDTO { Text = apiResult.Result.contents.text,Translated= apiResult.Result.contents.translated, Translation =apiResult.Result.contents.translation };
+                TranslateToLeetResponseDTO data = new TranslateToLeetResponseDTO { Text = apiResult.Result.contents.text, Translated = apiResult.Result.contents.translated, Translation = apiResult.Result.contents.translation };
 
                 return new BaseResponseWithDataDTO<TranslateToLeetResponseDTO>()
                 {
-                    StatusCode=200,
-                    Data=data,
-                    Message="Success"
+                    StatusCode = 200,
+                    Data = data,
+                    Message = "Success"
                 };
 
             }

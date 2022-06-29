@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AFS_TRANSLATOR.DTO.Request
+﻿namespace AFS_TRANSLATOR.DTO.Request
 {
-    public  class TranslationHistoryFilterRequestDTO
+    public class TranslationHistoryFilterRequestDTO
     {
         public int Id { get; set; }
         public DateTime MinDate { get; set; } = DateTime.MinValue;

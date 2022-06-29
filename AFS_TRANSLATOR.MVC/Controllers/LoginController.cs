@@ -19,7 +19,7 @@ namespace AFS_TRANSLATOR.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(model.NickName == "Admin" && model.Password == "Password")
+                if (model.NickName == "Admin" && model.Password == "Password")
                 {
                     var claims = new List<Claim>
                 {
@@ -30,7 +30,7 @@ namespace AFS_TRANSLATOR.MVC.Controllers
 
                     await HttpContext.SignInAsync(principal);
 
-                   return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return View();

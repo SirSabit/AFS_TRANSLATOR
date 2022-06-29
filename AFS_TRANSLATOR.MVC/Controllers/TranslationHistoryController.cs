@@ -1,7 +1,6 @@
 ﻿using AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Abstract;
 using AFS_TRANSLATOR.DTO.Request;
 using AFS_TRANSLATOR.MVC.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AFS_TRANSLATOR.MVC.Controllers
@@ -14,7 +13,7 @@ namespace AFS_TRANSLATOR.MVC.Controllers
             _translationHistoryServices = translationHistoryServices;
         }
 
-        
+
         public IActionResult Index()
         {
             var historyList = _translationHistoryServices.GetHistoryTranslations(new TranslationHistoryFilterRequestDTO());
@@ -23,12 +22,12 @@ namespace AFS_TRANSLATOR.MVC.Controllers
             {
                 translations.Add(new TranslationHistoryViewModel
                 {
-                    Id=translation.Id,
-                    Text=translation.Text,
-                    CreatedAt=translation.CreatedAt,
-                    Translation=translation.Translation,
-                    TranslationType=translation.TranslationType,
-                    UpdatedAt=translation.UpdatedAt,
+                    Id = translation.Id,
+                    Text = translation.Text,
+                    CreatedAt = translation.CreatedAt,
+                    Translation = translation.Translation,
+                    TranslationType = translation.TranslationType,
+                    UpdatedAt = translation.UpdatedAt,
                 });
             }
             return View(translations);
@@ -40,9 +39,9 @@ namespace AFS_TRANSLATOR.MVC.Controllers
             var historyList = _translationHistoryServices.GetHistoryTranslations(new TranslationHistoryFilterRequestDTO
             {
                 Id = filter.Id,
-                MaxDate=filter.MaxDate,
-                MinDate=filter.MinDate,
-                Text=filter.Text,
+                MaxDate = filter.MaxDate,
+                MinDate = filter.MinDate,
+                Text = filter.Text,
                 Translation = filter.Translation,
             });
             List<TranslationHistoryViewModel> translations = new List<TranslationHistoryViewModel>();

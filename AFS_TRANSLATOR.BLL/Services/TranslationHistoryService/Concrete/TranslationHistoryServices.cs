@@ -3,11 +3,6 @@ using AFS_TRANSLATOR.DAL.Repositories.Abstract;
 using AFS_TRANSLATOR.DTO.Request;
 using AFS_TRANSLATOR.DTO.Response;
 using AFS_TRANSLATOR.ENTITIES;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete
 {
@@ -47,7 +42,7 @@ namespace AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete
                 translationHistoryList = filter.MaxDate == DateTime.MaxValue ? translationHistoryList : translationHistoryList.Where(x => x.CreatedAt <= filter.MinDate).ToList();
                 translationHistoryList = filter.Text == "" || filter.Text == null ? translationHistoryList : translationHistoryList.Where(x => x.Text.ToLower().Contains(filter.Text.ToLower())).ToList();
                 translationHistoryList = filter.Translation == "" || filter.Translation == null ? translationHistoryList : translationHistoryList.Where(x => x.Translation.ToLower().Contains(filter.Translation.ToLower())).ToList();
-                translationHistoryList = filter.TranslationType == "" || filter.TranslationType ==null ? translationHistoryList : translationHistoryList.Where(x => x.TranslationType.ToLower().Contains(filter.TranslationType.ToLower())).ToList();
+                translationHistoryList = filter.TranslationType == "" || filter.TranslationType == null ? translationHistoryList : translationHistoryList.Where(x => x.TranslationType.ToLower().Contains(filter.TranslationType.ToLower())).ToList();
 
 
                 foreach (var translation in translationHistoryList)
@@ -58,7 +53,7 @@ namespace AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete
                         Text = translation.Text,
                         Translation = translation.Translation,
                         TranslationType = translation.TranslationType,
-                        CreatedAt = translation.CreatedAt                        
+                        CreatedAt = translation.CreatedAt
                     });
                 }
                 return new BaseResponseWithDataDTO<List<HistoryTranslationDTO>>()

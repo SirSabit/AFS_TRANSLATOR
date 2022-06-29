@@ -4,11 +4,6 @@ using AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Abstract;
 using AFS_TRANSLATOR.BLL.Services.TranslationHistoryService.Concrete;
 using AFS_TRANSLATOR.DAL.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AFS_TRANSLATOR.BLL.Extensions
 {
