@@ -13,9 +13,4 @@
     <ProjectReference Include="..\AFS_TRANSLATOR.ENTITIES\AFS_TRANSLATOR.ENTITIES.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\TranslationHistoryService\Abstract\" />
-    <Folder Include="Services\TranslationHistoryService\Concrete\" />
-  </ItemGroup>
-
 </Project>

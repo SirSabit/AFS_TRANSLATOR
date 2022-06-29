@@ -40,7 +40,7 @@ namespace AFS_TRANSLATOR.CORE.CoreRepository.Concrete
             }
         }
 
-        public void insert(T entity)
+        public void Insert(T entity)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace AFS_TRANSLATOR.CORE.CoreRepository.Concrete
             }
         }
 
-        public void update(T entity)
+        public void Update(T entity)
         {
             try
             {
